@@ -1,7 +1,14 @@
-
+"use client"
 const Feed = () => {
+  const handleClickH = () => {
+ console.log("aaaaaaaaaaaaaaaaaaaaaa");
+  }
   return (
-    <div>Feed</div>
+    <div>
+
+<button onClick={console.log("aaaaaaaaaaaaaaaaaaaaaa")}>gdfhjdjshg</button>
+
+    </div>
   )
 }
 
