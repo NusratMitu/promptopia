@@ -47,7 +47,7 @@ const Nav = () => {
             src={`/assets/images/logo.svg`}
             width={37}
             height={37}
-            alt="profile"
+            alt="profile icon"
             />
              
         </Link>
