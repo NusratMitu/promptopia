@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,8 +17,12 @@ const Nav = () => {
     }, []);
     console.log({providers});
     console.log({toggleDropdown});
+ const handleClick = () => { 
+   console.log("hghjghjghjgj")
+ }
   return (
     <>
+    <button type="submit" onClick={()=> console.log("dgdrgreer")}>Click</button>
          <nav className='flex-between w-full mb-16 pt-3'>
       <Link href={'/'} className='flex gap-2 flex-center'>
        <Image src={'/assets/images/logo.svg'}
@@ -29,6 +33,7 @@ const Nav = () => {
        />
         <p className='logo_text'>Promptopia</p>
       </Link>
+    
       {/* pc navigation */}
       <div className="sm:flex hidden">
 {
@@ -39,8 +44,8 @@ const Nav = () => {
         </Link>
         <button type="button" 
         cursor="pointer"
-        // onClick={()=> console.log("hghjghjghjgj")} 
-        onClick={()=> signOut} 
+        onClick={handleClick} 
+        // onClick={()=> signOut} 
         className="outline_btn"> Sign Out</button>
         <Link href={`/profile`}>
             <Image 
