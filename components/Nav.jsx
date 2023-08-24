@@ -1,5 +1,5 @@
 'use client'
-import { getProviders, signIn } from "next-auth/react";
+import { getProviders, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,13 +16,11 @@ const Nav = () => {
       setProviders()
     }, []);
     console.log({providers});
-    console.log({toggleDropdown});
- const handleClick = () => { 
-   console.log("hghjghjghjgj")
- }
+    // console.log({toggleDropdown});
+
   return (
     <>
-    <button type="submit" onClick={()=> console.log("dgdrgreer")}>Click</button>
+   
          <nav className='flex-between w-full mb-16 pt-3'>
       <Link href={'/'} className='flex gap-2 flex-center'>
        <Image src={'/assets/images/logo.svg'}
@@ -44,8 +42,7 @@ const Nav = () => {
         </Link>
         <button type="button" 
         cursor="pointer"
-        onClick={handleClick} 
-        // onClick={()=> signOut} 
+        onClick={()=> signOut} 
         className="outline_btn"> Sign Out</button>
         <Link href={`/profile`}>
             <Image 
@@ -62,6 +59,7 @@ const Nav = () => {
     (<>
     {
       providers && Object.values(providers).map(provider => (
+        console.log(provider),
         <button
         type="button"
         key={provider.name}
@@ -100,8 +98,19 @@ const Nav = () => {
                 >
                   My Profile
                 </Link>
+                   <Link
+                  href='/create-prompt'
+                  className='dropdown_link'
+                  onClick={() => setToggleDropdown(false)}
+                >
+                Create prompt
+                </Link>
                 
-
+                <button type="button" 
+        cursor="pointer"
+        onClick={()=>{ setToggleDropdown(false);
+          signOut()}} 
+        className="black_btn mt-5 w-full"> Sign Out</button>
                 </div>
               )
             }
