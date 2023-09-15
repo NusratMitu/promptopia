@@ -1,11 +1,13 @@
 'use client'
-import { getProviders, signIn, signOut } from "next-auth/react";
+import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Nav = () => {
-    const isUserLoggedIn = true
+  const { data: session} = useSession()
+  console.log({session});
+    // const isUserLoggedIn = true
     const [providers, setProviders] = useState(null);
     const [toggleDropdown, setToggleDropdown] = useState(false);
     useEffect(() => {
@@ -31,11 +33,11 @@ const Nav = () => {
        />
         <p className='logo_text'>Promptopia</p>
       </Link>
-    
+    {alert(session?.user)}
       {/* pc navigation */}
       <div className="sm:flex hidden">
 {
-    isUserLoggedIn ?
+    session?.user ?
     (<div className="flex gap-3 md:gap-5">
         <Link href={`/create-prompt`} className="black_btn">
         Create Post
@@ -77,7 +79,7 @@ const Nav = () => {
       {/* mobile navigation */}
       <div className="sm:hidden flex relative">
 {
-    isUserLoggedIn ?
+    session?.user ?
     (<div className="flex">
         
             <Image 

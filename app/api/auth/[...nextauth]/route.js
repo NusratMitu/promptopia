@@ -26,23 +26,26 @@ try {
     // check if a user is already exist
     const UserExists = await User.findOne({
         email: profile.email
-    })
+    });
 
     //if not create a new user
     if(!UserExists) {
         await User.create({
             email: profile.email, 
             username: profile.name.replace(" ", "").toLowerCase(),
-            image: profile.picture
-        })
+            image: profile.picture,
+        });
     }
-    return true;
+    return true
 }
-cache (error) {
-console.log(error);
+catch (error) {
+    console.log("Error checking if user exists: ", error.message);
 return false
 }
-}})
+},
+
+}
+)
 
 export { handler as GET, handler as POST };
 
